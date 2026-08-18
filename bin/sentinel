@@ -1,0 +1,26 @@
+#!/data/data/com.termux/files/usr/bin/env bash
+# Launcher for Termux Sentinel.
+#
+# Resolves the repository even when invoked through a symlink in $PREFIX/bin,
+# so `sentinel` works from any directory.
+
+set -euo pipefail
+
+target="${BASH_SOURCE[0]}"
+while [ -L "$target" ]; do
+    link="$(readlink "$target")"
+    case "$link" in
+        /*) target="$link" ;;
+        *)  target="$(dirname "$target")/$link" ;;
+    esac
+done
+REPO="$(cd "$(dirname "$target")/.." && pwd)"
+
+PY="$(command -v python3 || command -v python || true)"
+if [ -z "$PY" ]; then
+    echo "sentinel: python3 not found. Run: pkg install python" >&2
+    exit 3
+fi
+
+cd "$REPO"
+exec "$PY" -m sentinel "$@"

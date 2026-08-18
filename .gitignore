@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# Runtime state, none of which belongs in version control
+*.yarc
+*.log
+reports/
+scan-*.json
+
+# Never commit these: quarantined files are live malware samples, and the
+# signature database is several hundred megabytes of generated data.
+quarantine/
+clamav-db/
+vt-cache.json
+
+# Local configuration may contain a VirusTotal API key
+config.toml

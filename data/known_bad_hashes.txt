@@ -1,0 +1,18 @@
+# Local known-bad SHA-256 list.
+#
+# Format:  <sha256>  <label>
+# Lines beginning with # are ignored.
+#
+# This list is intentionally small. It is not a substitute for the ClamAV
+# database; it exists so you can pin samples relevant to you -- something a
+# colleague sent you, or a file an incident report named -- without waiting for
+# a signature vendor to catalogue it.
+#
+# Add an entry with:
+#   sha256sum suspicious.apk >> data/known_bad_hashes.txt
+
+# EICAR anti-malware test file. Harmless by design: it exists solely to prove
+# that a scanner is wired up and actually reading file contents. Keeping it here
+# means `sentinel scan` can be verified end to end even before the ClamAV
+# database has been downloaded.
+275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f  EICAR-Test-File
